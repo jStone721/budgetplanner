@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budget Planner</title>
+    <script type="module" crossorigin src="/assets/index-Bqx5t1kE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BEo6AZit.css">
+  </head>
+  <body>
+    <header>
+      <h1>Budget Planner</h1>
+      <button id="logout-btn">Logout</button>
+    </header>
+
+    <main>
+      <!-- Add Item Section -->
+      <section id="add-item">
+        <h2>Add Income/Expense</h2>
+        <form id="item-form">
+          <input type="text" id="item-name" placeholder="Item Name" required />
+          <input type="number" id="item-amount" placeholder="Amount" required />
+          <select id="item-category">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <button type="submit">Add Item</button>
+        </form>
+      </section>
+      <!-- Monthly Spending Section -->
+      <section id="monthly-summary">
+        <h2>Monthly Spending</h2>
+        <div>
+          <label for="month-filter">Select Month:</label>
+          <input type="month" id="month-filter" />
+        </div>
+        <ul id="monthly-list"></ul>
+      </section>
+      <!-- Items List with Category Filter -->
+      <section id="items-list">
+        <h2>Items</h2>
+        <div>
+          <label for="category-filter">Filter by Category:</label>
+          <select id="category-filter">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+        </div>
+        <ul id="items"></ul>
+      </section>
+
+      <!-- Summary Section -->
+      <section id="summary">
+        <h2>Summary</h2>
+        <p>Total Income: <span id="total-income">$0</span></p>
+        <p>Total Expenses: <span id="total-expenses">$0</span></p>
+        <p>Balance: <span id="balance">$0</span></p>
+      </section>
+    </main>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot-section">
+      <h2>Chatbot Assistant</h2>
+      <div id="chatbot-window"></div>
+      <input type="text" id="chatbot-input" placeholder="Type a message..." />
+      <button id="chatbot-send">Send</button>
+    </section>
+
+  </body>
+</html>
