@@ -1,0 +1,37 @@
+name: Firebase Deployment
+
+on:
+  push:
+    branches:
+      - main # Trigger deployment on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20" # Use Node 20 or match your project
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Build (if necessary)
+      - name: Build Project
+        run: npm run build # If you're using a bundler (Vite, Webpack, etc.)
+
+      # Authenticate with Firebase
+      - name: Firebase Login
+        uses: w9jds/firebase-action@v2.2.0
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
