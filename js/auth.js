@@ -1,33 +1,29 @@
-import {auth} from "./firebase-config.js";
-import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+const firebaseConfig = {
+  apiKey: "AIzaSyAkMccaMDOUcSrM7WcjwVZ3LP8rdWI1NAA",
+  authDomain: "budgetplanner-952e3.firebaseapp.com",
+  projectId: "budgetplanner-952e3",
+  storageBucket: "budgetplanner-952e3.firebasestorage.app",
+  messagingSenderId: "491817221899",
+  appId: "1:491817221899:web:17352c66098004772b2c0e",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-const provider = new GoogleAuthProvider();
+// Firebase Auth
+const auth = firebase.auth();
 
-const signInBttn = document.getElementById("signIn");
-
-const signIn = (auth, provider) => {
-  signInWithPopup(auth, provider)
+// Google Sign-In
+const signInButton = document.getElementById("signIn");
+signInButton.addEventListener("click", () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  auth
+    .signInWithPopup(provider)
     .then(result => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
       const user = result.user;
-      localStorage.setItem("email", JSON.stringify(user.email));
-      window.location = "index.html";
+      console.log("Signed in as:", user.email);
+      window.location.href = "/index.html"; // Redirect on success
     })
     .catch(error => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.customData.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
+      console.error("Sign-in error:", error.message);
     });
-};
-
-signInBttn.addEventListener("click", () => {
-  signIn(auth, provider);
 });
