@@ -1,9 +1,9 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
-      {"source": "/auth", "destination": "/auth.html"},
+      {"source": "/auth.html", "destination": "/auth.html"},
       {"source": "**", "destination": "/index.html"}
     ]
   }
