@@ -4,11 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In</title>
-    <link rel="stylesheet" href="assets/styles/signin.css" />
-    <base href="/budgetplanner/" />
+
+    <!-- Firebase App (Core) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+
+    <!-- Firebase Auth -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+
+    <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
+
+    <!-- Your custom JS (no type="module" here) -->
+    <script src="./js/auth.js" defer></script>
   </head>
   <body>
     <header>
@@ -17,7 +24,5 @@
     <main>
       <button id="signIn">Sign In</button>
     </main>
-    <!-- work now pls -->
-    <script type="module" src="./js/auth.js"></script>
   </body>
 </html>
