@@ -1,7 +1,6 @@
 {
   "name": "budgetplanner",
   "version": "1.0.0",
-  "homepage": "https://jstone721.github.io/budgetplanner/",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
