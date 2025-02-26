@@ -4,11 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget Planner</title>
-    <base href="/budgetplanner/" />
+
+    <!-- Firebase App (Core) -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+
+    <!-- Firebase Auth -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+
+    <!-- Firebase Firestore -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js"></script>
-    <script type="module" crossorigin src="/budgetplanner/assets/index-DDcVtIXJ.js"></script>
+
+    <!-- Your Firebase Config -->
+    <script src="./js/firebase-config.js"></script>
+
+    <!-- Your Custom JS -->
+    <script src="./js/app.js" defer></script>
+
     <link rel="stylesheet" crossorigin href="/budgetplanner/assets/index-BEo6AZit.css">
   </head>
   <body>
@@ -31,26 +42,10 @@
           <button type="submit">Add Item</button>
         </form>
       </section>
-      <!-- Monthly Spending Section -->
-      <section id="monthly-summary">
-        <h2>Monthly Spending</h2>
-        <div>
-          <label for="month-filter">Select Month:</label>
-          <input type="month" id="month-filter" />
-        </div>
-        <ul id="monthly-list"></ul>
-      </section>
-      <!-- Items List with Category Filter -->
+
+      <!-- Items List -->
       <section id="items-list">
         <h2>Items</h2>
-        <div>
-          <label for="category-filter">Filter by Category:</label>
-          <select id="category-filter">
-            <option value="all">All</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
-        </div>
         <ul id="items"></ul>
       </section>
 
@@ -62,14 +57,5 @@
         <p>Balance: <span id="balance">$0</span></p>
       </section>
     </main>
-
-    <!-- Chatbot Section -->
-    <section id="chatbot-section">
-      <h2>Chatbot Assistant</h2>
-      <div id="chatbot-window"></div>
-      <input type="text" id="chatbot-input" placeholder="Type a message...." />
-      <button id="chatbot-send">Send</button>
-    </section>
-
   </body>
 </html>
