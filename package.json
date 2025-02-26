@@ -9,6 +9,7 @@
     "firebase": "^11.3.1"
   },
   "devDependencies": {
+    "crypto-browserify": "^3.12.1",
     "vite": "^6.2.0"
   }
 }
