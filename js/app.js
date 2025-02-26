@@ -1,13 +1,6 @@
-// Import Firebase modules using relative paths (for GitHub Pages compatibility)
 import {auth, db} from "./firebase-config.js";
-import {
-  onAuthStateChanged,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
-import {
-  doc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+import {onAuthStateChanged, signOut} from "firebase/auth";
+import {doc, getDoc} from "firebase/firestore";
 
 // =================== AUTH CHECK ===================
 let currentUser = localStorage.getItem("email");
@@ -56,7 +49,7 @@ const loadItems = () => {
   });
 };
 
-// Add Item Function
+// Add Item Function (Moved Above to Fix Scope Issue)
 const addItem = (name, amount, category) => {
   const item = {
     id: Date.now().toString(),
@@ -189,7 +182,6 @@ monthFilter.addEventListener("change", () => {
     }
   });
 });
-
 // =================== FETCH OPENAI API KEY FROM FIRESTORE ===================
 const fetchOpenAIKey = async () => {
   try {
@@ -269,6 +261,7 @@ chatbotSendBtn.addEventListener("click", async () => {
 
 // =================== PROCESS AI COMMANDS ===================
 const processAICommand = message => {
+  // Improved Regex to handle phrases like "I bought a candy for $2"
   const addRegex =
     /(buy|bought|spent|earned|received|got|income|expense)\s*(?:a|an|the)?\s*(.*?)\s*(?:for|of)?\s*\$?(\d+(\.\d{1,2})?)/i;
   const addMatch = message.match(addRegex);
@@ -288,12 +281,14 @@ const processAICommand = message => {
     return;
   }
 
+  // Delete all items
   if (message.includes("delete all") || message.includes("remove all")) {
     deleteAllItems();
     appendMessage("Bot", "All items deleted.");
     return;
   }
 
+  // Show balance
   if (message.includes("balance") || message.includes("total")) {
     appendMessage(
       "Bot",
@@ -302,9 +297,9 @@ const processAICommand = message => {
     return;
   }
 
+  // Fallback
   appendMessage("Bot", "I couldn't understand the command. Please try again.");
 };
-
 const deleteAllItems = () => {
   localStorage.removeItem("budgetItems");
   loadItems();

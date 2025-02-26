@@ -1,22 +1,33 @@
-// Ensure firebase-config.js is loaded first via the HTML script tags
+import {auth} from "./firebase-config.js";
+import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 
-const signInButton = document.getElementById("signIn");
+const provider = new GoogleAuthProvider();
 
-signInButton.addEventListener("click", () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
+const signInBttn = document.getElementById("signIn");
 
-  firebase
-    .auth()
-    .signInWithPopup(provider)
+const signIn = (auth, provider) => {
+  signInWithPopup(auth, provider)
     .then(result => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      // The signed-in user info.
       const user = result.user;
-      alert(`Signed in as ${user.displayName}`);
-      console.log("User Info:", user);
-      // Redirect or load the next page
-      window.location.href = "index.html";
+      localStorage.setItem("email", JSON.stringify(user.email));
+      window.location = "index.html";
     })
     .catch(error => {
-      console.error("Error during sign-in:", error);
-      alert("Sign-in failed. Check the console for details.");
+      // Handle Errors here.
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // The email of the user's account used.
+      const email = error.customData.email;
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      // ...
     });
+};
+
+signInBttn.addEventListener("click", () => {
+  signIn(auth, provider);
 });
