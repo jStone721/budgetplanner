@@ -4,8 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget Planner</title>
-    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="./assets/styles/style.css" />
+
+    <!-- Firebase CDN (as ES Modules) -->
+    <script type="module">
+      import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+      import {getAuth} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+      import {getFirestore} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyAkMccaMDOUcSrM7WcjwVZ3LP8rdWI1NAA",
+        authDomain: "budgetplanner-952e3.firebaseapp.com",
+        projectId: "budgetplanner-952e3",
+        storageBucket: "budgetplanner-952e3.firebasestorage.app",
+        messagingSenderId: "491817221899",
+        appId: "1:491817221899:web:17352c66098004772b2c0e",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      window.auth = getAuth(app);
+      window.db = getFirestore(app);
+    </script>
+
+    <!-- Your App JS -->
+    <script type="module" src="./js/app.js" defer></script>
   </head>
+
   <body>
     <header>
       <h1>Budget Planner</h1>
@@ -26,6 +49,7 @@
           <button type="submit">Add Item</button>
         </form>
       </section>
+
       <!-- Monthly Spending Section -->
       <section id="monthly-summary">
         <h2>Monthly Spending</h2>
@@ -35,6 +59,7 @@
         </div>
         <ul id="monthly-list"></ul>
       </section>
+
       <!-- Items List with Category Filter -->
       <section id="items-list">
         <h2>Items</h2>
@@ -65,7 +90,5 @@
       <input type="text" id="chatbot-input" placeholder="Type a message..." />
       <button id="chatbot-send">Send</button>
     </section>
-
-    <script type="module" src="./js/app.js"></script>
   </body>
 </html>

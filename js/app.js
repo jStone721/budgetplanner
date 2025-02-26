@@ -1,6 +1,14 @@
-import {auth, db} from "./firebase-config.js";
-import {onAuthStateChanged, signOut} from "firebase/auth";
-import {doc, getDoc} from "firebase/firestore";
+const auth = window.auth;
+const db = window.db;
+
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import {
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 // =================== AUTH CHECK ===================
 let currentUser = localStorage.getItem("email");
